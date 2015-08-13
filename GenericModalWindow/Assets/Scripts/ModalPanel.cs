@@ -51,7 +51,7 @@ public class ModalPanel : MonoBehaviour {
 		}
 	}
 
-	public void EnableModal(string question, UnityAction [] events, Sprite icon = null) {
+	public void EnableModal(string question, UnityAction [] events, string [] buttonText, Sprite icon = null) {
 
 		modalPanel.SetActive(true);
 
@@ -75,7 +75,7 @@ public class ModalPanel : MonoBehaviour {
 				buttons[i].gameObject.SetActive(true);
 
 				Text gtext = buttons[i].GetComponentInChildren<Text>();
-				gtext.text = "Hello" + i;
+				gtext.text = buttonText[i];
 			}
 
 		}
