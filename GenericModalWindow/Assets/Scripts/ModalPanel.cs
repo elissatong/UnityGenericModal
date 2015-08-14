@@ -9,6 +9,12 @@ public class ModalPanel : MonoBehaviour {
 	public Image icon;
 	public Button [] buttons;
 	public GameObject modalPanel;
+	public Sprite spriteIcon;
+
+	private Rect SPRITE_RECT = new Rect(0.0f, 0.0f, 32.0f, 32.0f);
+	private Vector2 SPRITE_PIVOT = new Vector2(0.5f, 0.5f);
+	private Sprite sIcon;
+
 
 	private static ModalPanel sModalPanel;
 
@@ -22,6 +28,11 @@ public class ModalPanel : MonoBehaviour {
 		}
 
 		return sModalPanel;
+	}
+
+	void Awake() {
+
+		//sIcon = Sprite.Create(texIcon, SPRITE_RECT, SPRITE_PIVOT);
 	}
 
 	// Implement a Yes/No/Cancel panel
@@ -57,10 +68,10 @@ public class ModalPanel : MonoBehaviour {
 
 		this.questions.text = question;
 
-		if (icon != null) 
+		if (spriteIcon != null) 
 		{
 			this.icon.gameObject.SetActive(true);
-			this.icon.sprite = icon;
+			this.icon.sprite = spriteIcon;
 		}
 
 		// Check if there is enough buttons for the requested events
