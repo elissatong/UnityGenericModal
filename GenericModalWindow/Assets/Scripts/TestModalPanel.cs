@@ -7,9 +7,9 @@ using System.Collections;
 public class TestModalPanel : MonoBehaviour {
 
 	public GameObject background;
-	public Texture [] textures;
-	public Texture2D icon;
+	public Sprite icon;
 	public Text coins;
+	public Texture [] textures;
 
 	private ModalPanel modalPanel;
 
@@ -30,27 +30,27 @@ public class TestModalPanel : MonoBehaviour {
 	}
 
 	public void TestYesNoCancel() {
-		modalPanel.YesNoCancelModal("Do you want to change background?", TestYesFunction, TestNoFunction, TestCancelFunction);
+		modalPanel.YesNoCancelModal("Do you want to change background?", icon, TestYesFunction, TestNoFunction, TestCancelFunction);
 	}
 
 	public void Test3Buttons() {
 		UnityAction [] actions = {TestYesFunction, TestNoFunction, TestCancelFunction};
 		string [] buttonText = {yes, no, cancel};
 		//Sprite sIcon = Sprite.Create(icon, SPRITE_RECT, SPRITE_PIVOT);
-		modalPanel.EnableModal("Do you want to change background?", actions, buttonText);
+		modalPanel.EnableModal("Do you want to change background?", actions, buttonText, icon);
 	}
 
 	public void Test2Buttons() {
 		UnityAction [] actions = {TestYesFunction, TestNoFunction};
 		string [] buttonText = {yes, no};
-		modalPanel.EnableModal("Do you want to change background?", actions, buttonText);
+		modalPanel.EnableModal("Do you want to change background?", actions, buttonText, icon);
 	}
 
 	public void Test1Buttons() {
 		UnityAction [] actions = {TestOkFunction};
 		string [] buttonText = {ok};
 		//Sprite sIcon = Sprite.Create(icon, SPRITE_RECT, SPRITE_PIVOT);
-		modalPanel.EnableModal("You have been rewarded 100 coins.", actions, buttonText);
+		modalPanel.EnableModal("You have been rewarded 100 coins.", actions, buttonText, icon);
 	}
 
 	void TestOkFunction() {
@@ -59,7 +59,7 @@ public class TestModalPanel : MonoBehaviour {
 		if (coins != null) 
 		{
 			numCoins += 100;
-			coins.text = "100 coins";
+			coins.text = numCoins + " coins";
 		}
 	}
 

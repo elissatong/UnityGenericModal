@@ -49,6 +49,9 @@
      <Compile Include="Assets\Scripts\BringToFront.cs" />
      <Compile Include="Assets\Scripts\ModalPanel.cs" />
      <Compile Include="Assets\Scripts\TestModalPanel.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\TutDisplayManager.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\TutModalPanel.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\TutTestModalWindow.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

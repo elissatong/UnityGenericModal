@@ -11,9 +11,9 @@ public class ModalPanel : MonoBehaviour {
 	public GameObject modalPanel;
 	public Sprite spriteIcon;
 
-	private Rect SPRITE_RECT = new Rect(0.0f, 0.0f, 32.0f, 32.0f);
-	private Vector2 SPRITE_PIVOT = new Vector2(0.5f, 0.5f);
-	private Sprite sIcon;
+//	private Rect SPRITE_RECT = new Rect(0.0f, 0.0f, 32.0f, 32.0f);
+//	private Vector2 SPRITE_PIVOT = new Vector2(0.5f, 0.5f);
+//	private Sprite sIcon;
 
 
 	private static ModalPanel sModalPanel;
@@ -36,7 +36,7 @@ public class ModalPanel : MonoBehaviour {
 	}
 
 	// Implement a Yes/No/Cancel panel
-	public void YesNoCancelModal(string question, UnityAction yesEvent, UnityAction noEvent, UnityAction cancelEvent) {
+	public void YesNoCancelModal(string question, Sprite icon, UnityAction yesEvent, UnityAction noEvent, UnityAction cancelEvent) {
 
 		modalPanel.SetActive(true);
 
@@ -55,7 +55,8 @@ public class ModalPanel : MonoBehaviour {
 			buttons[2].onClick.AddListener(ClosePanel);
 
 			this.questions.text = question;
-			this.icon.gameObject.SetActive(false);
+			this.icon.sprite = icon;
+			this.icon.gameObject.SetActive(true);
 			this.buttons[0].gameObject.SetActive(true);
 			this.buttons[1].gameObject.SetActive(true);
 			this.buttons[2].gameObject.SetActive(true);
@@ -66,13 +67,6 @@ public class ModalPanel : MonoBehaviour {
 
 		modalPanel.SetActive(true);
 
-		this.questions.text = question;
-
-		if (spriteIcon != null) 
-		{
-			this.icon.gameObject.SetActive(true);
-			this.icon.sprite = spriteIcon;
-		}
 
 		// Check if there is enough buttons for the requested events
 		int numButtons = buttons.Length;
@@ -95,6 +89,15 @@ public class ModalPanel : MonoBehaviour {
 		for (int i = events.Length; i < buttons.Length; ++i)
 		{
 			buttons[i].gameObject.SetActive(false);
+		}
+
+		this.questions.text = question;
+		
+		//if (spriteIcon != null) 
+		{
+			this.icon.sprite = icon;
+			this.icon.gameObject.SetActive(true);
+
 		}
 
 	}
