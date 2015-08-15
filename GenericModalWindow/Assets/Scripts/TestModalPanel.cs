@@ -11,6 +11,9 @@ public class TestModalPanel : MonoBehaviour {
 	public Text coins;
 	public Texture [] textures;
 
+	public Transform spawnPoint;
+	public GameObject thingToSpawn;
+
 	private ModalPanel modalPanel;
 
 //	private Rect SPRITE_RECT = new Rect(0.0f, 0.0f, 32.0f, 32.0f);
@@ -25,9 +28,17 @@ public class TestModalPanel : MonoBehaviour {
 	private string no = "No";
 	private string cancel = "Cancel";
 
+	//--------------------------------------------------------------------------
+	// Unity Methods
+	//--------------------------------------------------------------------------
 	void Awake() {
 		modalPanel = ModalPanel.Instance();
 	}
+
+
+	//--------------------------------------------------------------------------
+	// Public Methods for button.OnClick event
+	//--------------------------------------------------------------------------
 
 	public void TestYesNoCancel() {
 		modalPanel.YesNoCancelModal("Do you want to change background?", icon, TestYesFunction, TestNoFunction, TestCancelFunction);
@@ -49,9 +60,21 @@ public class TestModalPanel : MonoBehaviour {
 	public void Test1Buttons() {
 		UnityAction [] actions = {TestOkFunction};
 		string [] buttonText = {ok};
-		//Sprite sIcon = Sprite.Create(icon, SPRITE_RECT, SPRITE_PIVOT);
 		modalPanel.EnableModal("You have been rewarded 100 coins.", actions, buttonText, icon);
 	}
+
+	public void TestLambda() {
+		UnityAction [] actions = { 
+			() => { InstantiateObject(thingToSpawn); },
+			TestNoFunction
+		};
+		string [] buttonText = {yes, no};
+		modalPanel.EnableModal("Do you want to spawn a sphere?", actions, buttonText);
+	}
+
+	//--------------------------------------------------------------------------
+	// UnityAction methods
+	//--------------------------------------------------------------------------
 
 	void TestOkFunction() {
 		
@@ -80,4 +103,11 @@ public class TestModalPanel : MonoBehaviour {
 		// add logic
 	}
 
+	//--------------------------------------------------------------------------
+	// Helper methods
+	//--------------------------------------------------------------------------
+
+	void InstantiateObject(GameObject thingToInstantiate) {
+		Instantiate(thingToInstantiate, spawnPoint.position, spawnPoint.rotation);
+	}
 }
