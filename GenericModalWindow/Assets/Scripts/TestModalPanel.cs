@@ -72,6 +72,14 @@ public class TestModalPanel : MonoBehaviour {
 		modalPanel.EnableModal("Do you want to spawn a sphere?", actions, buttonText);
 	}
 
+	public void TestModalPanelDetails() {
+		ModalPanelDetails details = new ModalPanelDetails("", "Do you want to change background image?", icon);
+		details.button1 = new EventButtonDetails(yes, null, TestYesFunction);
+		details.button2 = new EventButtonDetails(no, null, TestNoFunction);
+
+		modalPanel.EnableModal(details);
+	}
+
 	//--------------------------------------------------------------------------
 	// UnityAction methods
 	//--------------------------------------------------------------------------
@@ -110,4 +118,6 @@ public class TestModalPanel : MonoBehaviour {
 	void InstantiateObject(GameObject thingToInstantiate) {
 		Instantiate(thingToInstantiate, spawnPoint.position, spawnPoint.rotation);
 	}
+
+
 }
